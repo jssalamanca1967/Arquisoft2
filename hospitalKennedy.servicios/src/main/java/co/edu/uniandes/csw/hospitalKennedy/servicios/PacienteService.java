@@ -10,6 +10,7 @@ import co.edu.uniandes.csw.hospitalKennedy.dto.Reporte;
 import co.edu.uniandes.csw.hospitalKennedy.logica.interfaces.IServicioPacienteMock;
 import java.util.List;
 import javax.ejb.EJB;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 
@@ -24,9 +25,9 @@ public class PacienteService {
     
     @POST
     @Path("agregar/")
-    public List<Paciente> agregarPacientes(List<Reporte> lista){
+    public List<Reporte> agregarPacientes(List<Reporte> lista){
         for(Reporte reporte: lista){
-            doctorEjb.agregarReporte(paciente);
+            doctorEjb.agregarReporte(reporte);
         }
         
         return lista;
@@ -34,9 +35,9 @@ public class PacienteService {
     
     @DELETE
     @Path("borrar/")
-    public void eliminarPacientes(List<Paciente> lista){
-        for(Paciente paciente: lista){
-            doctorEjb.removerPaciente(paciente);
+    public void eliminarRecursos(List<Reporte> lista){
+        for(Reporte reporte: lista){
+            doctorEjb.removerReporte(reporte);
         }
     }
 }
