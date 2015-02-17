@@ -10,7 +10,7 @@ import co.edu.uniandes.csw.hospitalKennedy.logica.interfaces.IServicioDoctorMock
 import javax.ejb.Stateless;
 
 import co.edu.uniandes.csw.hospitalKennedy.logica.interfaces.IServicioPersistenciaMockLocal;
-import co.edu.uniandes.csw.mueblesdelosalpes.persistencia.mock.ServicioPersistenciaMock;
+import co.edu.uniandes.csw.hospitalKennedy.persistencia.mock.ServicioPersistenciaMock;
 import java.util.ArrayList;
 
 

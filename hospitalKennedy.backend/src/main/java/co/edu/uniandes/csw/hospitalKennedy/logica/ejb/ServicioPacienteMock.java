@@ -8,7 +8,7 @@ package co.edu.uniandes.csw.hospitalKennedy.logica.ejb;
 import co.edu.uniandes.csw.hospitalKennedy.dto.Reporte;
 import co.edu.uniandes.csw.hospitalKennedy.logica.interfaces.IServicioPacienteMock;
 import co.edu.uniandes.csw.hospitalKennedy.logica.interfaces.IServicioPersistenciaMockLocal;
-import co.edu.uniandes.csw.mueblesdelosalpes.persistencia.mock.ServicioPersistenciaMock;
+import co.edu.uniandes.csw.hospitalKennedy.persistencia.mock.ServicioPersistenciaMock;
 import java.util.ArrayList;
 import javax.ejb.Stateless;
 

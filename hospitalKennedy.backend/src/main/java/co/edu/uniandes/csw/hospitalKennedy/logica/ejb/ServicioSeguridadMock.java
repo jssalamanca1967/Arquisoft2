@@ -12,7 +12,7 @@
 
 package co.edu.uniandes.csw.hospitalKennedy.logica.ejb;
 
-import co.edu.uniandes.csw.mueblesdelosalpes.persistencia.mock.ServicioPersistenciaMock;
+import co.edu.uniandes.csw.hospitalKennedy.persistencia.mock.ServicioPersistenciaMock;
 import co.edu.uniandes.csw.hospitalKennedy.dto.Usuario;
 import co.edu.uniandes.csw.hospitalKennedy.excepciones.AutenticacionException;
 import co.edu.uniandes.csw.hospitalKennedy.logica.interfaces.IServicioSeguridadMockLocal;

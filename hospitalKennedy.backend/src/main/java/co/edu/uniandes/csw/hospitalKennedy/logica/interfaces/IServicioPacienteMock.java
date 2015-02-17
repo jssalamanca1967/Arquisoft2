@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.csw.hospitalKennedy.logica.interfaces;
 
+import co.edu.uniandes.csw.hospitalKennedy.dto.Paciente;
 import co.edu.uniandes.csw.hospitalKennedy.dto.Reporte;
 import java.util.ArrayList;
 
