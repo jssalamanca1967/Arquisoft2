@@ -88,5 +88,10 @@ public class ServicioPacienteMock implements IServicioPacienteMock {
             reportes.remove(foundItem);
         }
     }
+
+    @Override
+    public ArrayList<Reporte> getReportes() {
+       return reportes;
+    }
     
 }

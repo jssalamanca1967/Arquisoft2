@@ -20,4 +20,5 @@ public interface IServicioPacienteMock {
     public ArrayList<Reporte> getPacientes();
     public void agregarReporte(Reporte reporte);
     public void removerReporte(Reporte reporte);
+    public ArrayList<Reporte> getReportes();
 }

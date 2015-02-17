@@ -8,13 +8,16 @@ package co.edu.uniandes.csw.hospitalKennedy.servicios;
 import co.edu.uniandes.csw.hospitalKennedy.dto.Paciente;
 import co.edu.uniandes.csw.hospitalKennedy.dto.Reporte;
 import co.edu.uniandes.csw.hospitalKennedy.logica.interfaces.IServicioPacienteMock;
+import java.util.Iterator;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
+import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
@@ -52,5 +55,22 @@ public class PacienteService {
         }
                 throw new Exception("asdasdasdasdasd");
 
+    }
+    
+    @GET
+    @Path("/reporte/{idReporte}") //Ejemplo de este metodo: http://localhost:8080/hospitalKennedy.servicios/webresources/Pacientes/reporte/123456
+    public Reporte getReporte(@PathParam("idReporte") long idReporte){
+        System.out.println("Entroooooooooo y cogio el id de "+ idReporte);
+        List reportes = doctorEjb.getReportes();
+        Iterator<Reporte> it = reportes.iterator();
+        while(it.hasNext()){
+            Reporte reporteAct = it.next();
+            if(reporteAct.getId()== idReporte)
+            {
+             } else {
+               return reporteAct;
+            }
+        }
+        return null;
     }
 }
