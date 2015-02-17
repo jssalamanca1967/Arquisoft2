@@ -318,8 +318,8 @@ public class ServicioPersistenciaMock implements IServicioPersistenciaMockRemote
         {
             for (Object v : findAll(c))
             {
-                Mueble mue = (Mueble) v;
-                if (Long.parseLong(id.toString())== mue.getReferencia())
+                Paciente mue = (Paciente) v;
+                if (Long.parseLong(id.toString())== mue.getId())
                 {
                     resp = mue;
                 }
