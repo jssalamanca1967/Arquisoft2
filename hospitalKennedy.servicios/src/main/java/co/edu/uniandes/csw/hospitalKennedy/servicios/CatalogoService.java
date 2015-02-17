@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package co.edu.uniandes.csw.mueblesdelosalpes.servicios;
+package co.edu.uniandes.csw.hospitalKennedy.servicios;
 
 import co.edu.uniandes.csw.hospitalKennedy.dto.Mueble;
 import co.edu.uniandes.csw.hospitalKennedy.logica.interfaces.IServicioCarritoMockRemote;
