@@ -32,15 +32,14 @@ import javax.ws.rs.core.MediaType;
 public class PacienteService {
     
     @EJB
-    private IServicioPacienteMock doctorEjb;
+    private IServicioPacienteMock pacienteEjb;
     
     @POST
     @Path("agregar/")
     public List<Reporte> agregarPacientes(List<Reporte> lista){
-                System.out.println("Mensajeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee");
 
         for(Reporte reporte: lista){
-            doctorEjb.agregarReporte(reporte);
+            pacienteEjb.agregarReporte(reporte);
         }
 
         
@@ -51,17 +50,29 @@ public class PacienteService {
     @Path("borrar/")
     public void eliminarRecursos(List<Reporte> lista) throws Exception{
         for(Reporte reporte: lista){
-            doctorEjb.removerReporte(reporte);
+            pacienteEjb.removerReporte(reporte);
         }
-                throw new Exception("asdasdasdasdasd");
 
     }
+    
+    @GET
+    public List<Paciente> darPacientes(){
+        
+        return pacienteEjb.darPacientes();
+    }
+    
+    @GET
+    @Path("reportes/")
+    public List<Reporte> darReportes(){
+        return pacienteEjb.getReportes();
+    }
+           
     
     @GET
     @Path("/reporte/{idReporte}") //Ejemplo de este metodo: http://localhost:8080/hospitalKennedy.servicios/webresources/Pacientes/reporte/123456
     public Reporte getReporte(@PathParam("idReporte") long idReporte){
         System.out.println("Entroooooooooo y cogio el id de "+ idReporte);
-        List reportes = doctorEjb.getReportes();
+        List reportes = pacienteEjb.getReportes();
         Iterator<Reporte> it = reportes.iterator();
         while(it.hasNext()){
             Reporte reporteAct = it.next();
