@@ -123,8 +123,7 @@ public class ServicioCatalogoMock implements IServicioCatalogoMockRemote,IServic
      * @return muebles Arreglo con todos los muebles del sistema
      */
  
-    public List<Mueble> darMuebles()
-    {
+    public List<Mueble> darMuebles(){
         return persistencia.findAll(Mueble.class);
     }
 

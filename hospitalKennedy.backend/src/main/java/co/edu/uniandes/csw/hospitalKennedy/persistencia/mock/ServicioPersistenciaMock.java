@@ -13,9 +13,12 @@
 package co.edu.uniandes.csw.hospitalKennedy.persistencia.mock;
 
 
+import co.edu.uniandes.csw.hospitalKennedy.dto.Doctor;
 import co.edu.uniandes.csw.hospitalKennedy.dto.ExperienciaVendedor;
 import co.edu.uniandes.csw.hospitalKennedy.dto.Mueble;
+import co.edu.uniandes.csw.hospitalKennedy.dto.Paciente;
 import co.edu.uniandes.csw.hospitalKennedy.dto.RegistroVenta;
+import co.edu.uniandes.csw.hospitalKennedy.dto.Reporte;
 import co.edu.uniandes.csw.hospitalKennedy.dto.TipoMueble;
 import co.edu.uniandes.csw.hospitalKennedy.dto.TipoUsuario;
 import co.edu.uniandes.csw.hospitalKennedy.dto.Usuario;
@@ -44,22 +47,18 @@ public class ServicioPersistenciaMock implements IServicioPersistenciaMockRemote
     /**
      * Lista con los vendedores del sistema
      */
-    private static ArrayList<Vendedor> vendedores;
+    private static ArrayList<Doctor> doctores;
 
-    /**
-     * Lista con los muebles del sistema
-     */
-    private static ArrayList<Mueble> muebles;
 
     /**
      * Lista con los usuarios del sistema
      */
-    private static ArrayList<Usuario> usuarios;
+    private static ArrayList<Paciente> pacientes;
 
     /**
      * Lista con los registros de ventas
      */
-    private static ArrayList<RegistroVenta> registrosVentas;
+    private static ArrayList<Reporte> reportes;
 
     //-----------------------------------------------------------
     // Constructor
@@ -70,54 +69,33 @@ public class ServicioPersistenciaMock implements IServicioPersistenciaMockRemote
      */
     public ServicioPersistenciaMock()
     {
-        if (vendedores == null)
+        if (doctores == null)
         {
-            vendedores = new ArrayList();
-            ArrayList<ExperienciaVendedor> experiencia = new ArrayList<ExperienciaVendedor>();
+            doctores = new ArrayList<Doctor>();
 
-            experiencia.add(new ExperienciaVendedor(1L, "Banco de los Alpes", "Cajero", "Se desempeñó en diferentes áreas administrativas", 1998));
-            vendedores.add(new Vendedor(1L, "Carlos Antonio", "Gomez Rodriguez", experiencia, 900000, 80000, "Técnico en auditoría y costos", "vendedor1"));
+            doctores.add(new Doctor(1L, "Carlos Mendieta", "lolita45", "ca.mendieta45"));
+            doctores.add(new Doctor(5L, "Carlos Carrillo", "lolita45", "ca.carrillo"));
 
-            experiencia.clear();
-            experiencia.add(new ExperienciaVendedor(2L, "Marketplace de los Alpes", "Asesor de ventas", "Se desempeñó cómo consultor y asesor en área de ventas", 2006));
-            vendedores.add(new Vendedor(2L, "Claudia", "Sanchez Guerrero", experiencia, 950000, 85000, "Comunicadora social", "vendedor2"));
+            pacientes = new ArrayList<Paciente>();
+            
+            pacientes.add(new Paciente(1L, "Juana la loca", 25, 12365987, 200));
+            pacientes.add(new Paciente(2L, "Juana la sana", 15, 55689865, 185));
 
-            experiencia.clear();
-            experiencia.add(new ExperienciaVendedor(3L, "Seguros de los Alpes", "Vendedor", "Se desempeñó como vendedora e impulsadora", 2010));
-            vendedores.add(new Vendedor(3L, "Angela Patricia", "Montoya Zanabria", experiencia, 1200000, 135000, "Técnico en Gestión de mercadeo", "vendedor2"));
+            reportes = new ArrayList<Reporte>();
+            
+            reportes.add(new Reporte(1L, "Jugar bascketball", "Sana", "1", new Date(System.currentTimeMillis()), "Espalda baja", "Normal", 1, "Ninguno"));
+            reportes.add(new Reporte(2L, "Jugar football", "Sana", "1", new Date(System.currentTimeMillis()), "Espalda baja", "Normal", 2, "Ninguno"));
 
-            experiencia.clear();
-            experiencia.add(new ExperienciaVendedor(4L, "Autopartes de los Alpes", "Director de producción", "Se desempeñó cómo director en el área de producción", 2009));
-            vendedores.add(new Vendedor(4L, "Juan Pablo", "Escobar Vélez", experiencia, 1000000, 100000, "Técnico en métodos de producción", "vendedor1"));
-
-            muebles = new ArrayList<Mueble>();
-
-            //Agrega los muebles del sistema
-            muebles.add(new Mueble(1L, "Silla clásica", "Una confortable silla con estilo del siglo XIX.", TipoMueble.Interior, 45, "sillaClasica", 123));
-            muebles.add(new Mueble(2L, "Sillón new wave", "Innovador y cómodo. No existen mejores palabras para describir este hermoso sillón.", TipoMueble.Interior, 60, "newWave", 5655));
-            muebles.add(new Mueble(3L, "Silla moderna", "Lo último en la moda de interiores. Esta silla le brindará la comodidad e innovación que busca", TipoMueble.Interior, 50, "sillaModerna", 5464));
-            muebles.add(new Mueble(4L, "Mesa de jardín", "Una bella mesa para comidas y reuniones al aire libre.", TipoMueble.Exterior, 100, "mesaJardin", 4568));
-            muebles.add(new Mueble(5L, "Orange games", "Una hermosa silla con un toqué moderno y elegante. Excelente para su sala de estar", TipoMueble.Interior, 70, "sillaNaranja", 1345));
-            muebles.add(new Mueble(6L, "Cama king", "Una hermosa cama hecha en cedro para dos personas. Sus sueños no volveran a ser iguales.", TipoMueble.Interior, 50, "bed", 63358));
-            muebles.add(new Mueble(7L, "Silla Neoclásica", "Una bella silla con un estilo neoclásico", TipoMueble.Exterior, 65, "neoClasica", 678));
-            muebles.add(new Mueble(8L, "Camarote junior", "Con diseño moderno. Sus hijos ahora podrán tener unos felices sueños.", TipoMueble.Interior, 85, "camarote", 56565));
-
-            //Inicializa el arreglo que contiene los usuarios
-            usuarios = new ArrayList<Usuario>();
-
-            //Agrega usuarios al sistema
-            usuarios.add(new Usuario("admin", "adminadmin", TipoUsuario.Administrador));
-            usuarios.add(new Usuario("client", "clientclient", TipoUsuario.Cliente));
-
-            registrosVentas = new ArrayList<RegistroVenta>();
-            Random r = new Random();
-            for (int e = 0; e < 8; e++) {
-                RegistroVenta venta = new RegistroVenta();
-                venta.setCantidad(e);
-                venta.setProducto(muebles.get(e));
-                venta.setFechaVenta(new Date(r.nextInt()));
-                venta.setCiudad("Bogotá");
-            }
+            pacientes.get(0).setReportes(reportes);
+            
+            reportes = null;
+            reportes = new ArrayList<Reporte>();
+            
+            reportes.add(new Reporte(3L, "Jugar bascketball", "Sana", "1", new Date(System.currentTimeMillis()), "Espalda baja", "Normal", 1, "Ninguno"));
+            reportes.add(new Reporte(4L, "Jugar football", "Sana", "1", new Date(System.currentTimeMillis()), "Espalda baja", "Normal", 2, "Ninguno"));
+            
+            pacientes.get(1).setReportes(reportes);
+                        
         }
     }
 
@@ -132,39 +110,41 @@ public class ServicioPersistenciaMock implements IServicioPersistenciaMockRemote
     @Override
     public void create(Object obj) throws OperacionInvalidaException
     {
-        if (obj instanceof Vendedor)
+        if (obj instanceof Doctor)
         {
-            Vendedor v = (Vendedor) obj;
-            v.setIdentificacion(vendedores.size() + 1);
-            vendedores.add(v);
-        }
-        else if (obj instanceof Mueble)
-        {
-
-            Mueble m = (Mueble) obj;
-            m.setReferencia(muebles.size() + 1);
-            muebles.add(m);
-        } 
-        else if (obj instanceof Usuario)
-        {
-            Usuario m = (Usuario) obj;
-            for (Usuario us : usuarios)
+            Doctor v = (Doctor) obj;
+            for(Doctor doc: doctores)
             {
-                if (us.getLogin().equals(m.getLogin()))
-                {
-                    throw new OperacionInvalidaException("El usuario '" + m.getLogin() + "' ya ha sido registrado en el sistema");
-                }
-                if (us.getDocumento() == m.getDocumento() && us.getTipoDocumento().equals(m.getTipoDocumento()))
-                {
-                    throw new OperacionInvalidaException("El usuario con documento '" + m.getDocumento() + "' ya ha sido registrado en el sistema");
-                }
+                if(doc.getLogin().equals(v.getLogin()))
+                    throw new OperacionInvalidaException("El doctor con el login " + v.getLogin() + " ya existe.");
             }
-            usuarios.add(m);
-        } 
-        else if (obj instanceof RegistroVenta)
-        {
-            registrosVentas.add((RegistroVenta) obj);
+            v.setId(new Long(doctores.size()) + 1);
+            doctores.add(v);
         }
+        else if (obj instanceof Paciente)
+        {
+            Paciente m = (Paciente) obj;
+            for(Paciente paciente: pacientes)
+            {
+                if(paciente.getCedulaCiudadania() == m.getCedulaCiudadania())
+                    throw new OperacionInvalidaException("El paciente con la cedula de ciudadania " + m.getCedulaCiudadania() + " ya se encuentar registrado en el sistema");
+            }
+            m.setId(new Long(pacientes.size()) + 1);
+            pacientes.add(m);
+        }
+    }
+    
+    @Override
+    public void createReporte(Long idPaciente, Reporte reporte) throws Exception
+    {
+        Paciente pac = (Paciente) findById(Paciente.class, idPaciente);
+        
+        if(pac == null)
+            throw new Exception("El paciente con el id " + idPaciente + " no existe.");
+        
+        reporte.setId(Long.parseLong(idPaciente + "" + (pac.getReportes().size()+1)));
+        pac.getReportes().add(reporte);
+        
     }
 
     /**
@@ -174,50 +154,55 @@ public class ServicioPersistenciaMock implements IServicioPersistenciaMockRemote
     @Override
     public void update(Object obj)
     {
-        if (obj instanceof Vendedor)
+        if (obj instanceof Doctor)
         {
-            Vendedor editar = (Vendedor) obj;
-            Vendedor vendedor;
-            for (int i = 0; i < vendedores.size(); i++)
+            Doctor editar = (Doctor) obj;
+            Doctor doc;
+            for (int i = 0; i < doctores.size(); i++)
             {
-                vendedor = vendedores.get(i);
-                if (vendedor.getIdentificacion() == editar.getIdentificacion())
+                doc = doctores.get(i);
+                if (doc.getId() == editar.getId())
                 {
-                    vendedores.set(i, editar);
+                    doctores.set(i, editar);
                     break;
                 }
 
             }
 
         }
-        else if (obj instanceof Mueble)
+        else if (obj instanceof Paciente)
         {
-            Mueble editar = (Mueble) obj;
-            Mueble mueble;
-            for (int i = 0; i < muebles.size(); i++)
+            Paciente editar = (Paciente) obj;
+            Paciente mueble;
+            for (int i = 0; i < pacientes.size(); i++)
             {
-                mueble = muebles.get(i);
-                if (mueble.getReferencia() == editar.getReferencia())
+                mueble = pacientes.get(i);
+                if (mueble.getCedulaCiudadania()== editar.getCedulaCiudadania())
                 {
-                    muebles.set(i, editar);
+                    pacientes.set(i, editar);
                     break;
                 }
             }
-        } 
-        else if (obj instanceof Usuario)
+        }        
+    }    
+    
+    
+    @Override
+    public void updateReporte(Long idPaciente, Reporte reporte) throws Exception
+    {
+        Paciente pac = (Paciente) findById(Paciente.class, idPaciente);
+        
+        if(pac == null)
+            throw new Exception("El paciente con el id " + idPaciente + " no existe.");
+        int i = 0;
+        for(Reporte rep: pac.getReportes())
         {
-
-            Usuario editar = (Usuario) obj;
-            Usuario usuario;
-            for (int i = 0; i < usuarios.size(); i++)
+            
+            if(rep.getId() == reporte.getId())
             {
-                usuario = usuarios.get(i);
-                if (usuario.getLogin().equals(editar.getLogin()))
-                {
-                    usuarios.set(i, editar);
-                    break;
-                }
+                pac.getReportes().set(i, reporte);
             }
+            i++;
         }
     }
 
@@ -228,61 +213,54 @@ public class ServicioPersistenciaMock implements IServicioPersistenciaMockRemote
     @Override
     public void delete(Object obj) throws OperacionInvalidaException
     {
-        if (obj instanceof Vendedor)
+        if (obj instanceof Doctor)
         {
-            Vendedor vendedorABorrar = (Vendedor) obj;
+            Doctor vendedorABorrar = (Doctor) obj;
 
-            for (int e = 0; e < vendedores.size(); e++)
+            for (int e = 0; e < doctores.size(); e++)
             {
-                Vendedor ven = (Vendedor) vendedores.get(e);
-                if (ven.getIdentificacion() == vendedorABorrar.getIdentificacion())
+                Doctor ven = (Doctor) doctores.get(e);
+                if (ven.getId() == vendedorABorrar.getId())
                 {
-                    vendedores.remove(e);
+                    doctores.remove(e);
                     break;
                 }
             }
 
         } 
-        else if (obj instanceof Mueble)
+        else if (obj instanceof Paciente)
         {
-            Mueble mueble;
-            Mueble eliminar = (Mueble) obj;
-            for (int i = 0; i < muebles.size(); i++)
+            Paciente mueble;
+            Paciente eliminar = (Paciente) obj;
+            for (int i = 0; i < pacientes.size(); i++)
             {
-                mueble = muebles.get(i);
-                if (eliminar.getReferencia() == mueble.getReferencia())
+                mueble = pacientes.get(i);
+                if (eliminar.getCedulaCiudadania() == mueble.getCedulaCiudadania())
                 {
-                    muebles.remove(i);
+                    pacientes.remove(i);
                     break;
                 }
 
             }
 
         } 
-        else if (obj instanceof Usuario)
+        
+    }
+    
+    @Override
+    public void deleteReporte(Long idPaciente, Reporte reporte)
+    {
+        Paciente pac = (Paciente) findById(Paciente.class, idPaciente);
+        
+        int i = 0;
+        for(Reporte rep: pac.getReportes())
         {
-            Usuario usuarioABorrar = (Usuario) obj;
-            for (RegistroVenta rv : registrosVentas)
+            
+            if(rep.getId() == reporte.getId())
             {
-                if (rv.getComprador().getLogin().equals(usuarioABorrar.getLogin()))
-                {
-                    System.out.print("no borrado");
-                    throw new OperacionInvalidaException("El usuario ha realizado comprar y por lo tanto no puede ser eliminado del sistema.");
-                }
+                pac.getReportes().remove(i);
             }
-            if (usuarioABorrar != null && usuarioABorrar.getLogin() != null)
-            {
-                for (int e = 0; e < usuarios.size(); e++)
-                {
-                    Usuario ven = (Usuario) usuarios.get(e);
-                    if (ven.getLogin().equals(usuarioABorrar.getLogin()))
-                    {
-                        usuarios.remove(e);
-                        System.out.print("borrado");
-                        break;
-                    }
-                }
-            }
+            i++;
         }
     }
 
@@ -294,26 +272,25 @@ public class ServicioPersistenciaMock implements IServicioPersistenciaMockRemote
     @Override
     public List findAll(Class c)
     {
-        if (c.equals(Mueble.class))
+        System.out.println("Iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiihhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh");
+        
+        if (c.equals(Doctor.class))
         {
-            return muebles;
+            return doctores;
         } 
-        else if (c.equals(Vendedor.class))
+        else 
         {
-            return vendedores;
-        } 
-        else if (c.equals(Usuario.class))
-        {
-            return usuarios;
-        } 
-        else if (c.equals(RegistroVenta.class))
-        {
-            return registrosVentas;
-        } 
-        else
-        {
-            return null;
+            return pacientes;
         }
+    }
+    
+    @Override
+    public List findReportes(Long idPaciente)
+    {
+        Paciente encontrado = (Paciente) findById(Paciente.class, idPaciente );
+        
+        return encontrado.getReportes();
+        
     }
 
     /**
@@ -325,6 +302,7 @@ public class ServicioPersistenciaMock implements IServicioPersistenciaMockRemote
     @Override
     public Object findById(Class c, Object id)
     {
+        Object resp = null;
         if (c.equals(Vendedor.class))
         {
             for (Object v : findAll(c))
@@ -332,32 +310,22 @@ public class ServicioPersistenciaMock implements IServicioPersistenciaMockRemote
                 Vendedor ven = (Vendedor) v;
                 if (ven.getIdentificacion() == Long.parseLong(id.toString()))
                 {
-                    return ven;
+                    resp = ven;
                 }
             }
         } 
-        else if (c.equals(Mueble.class))
+        else
         {
             for (Object v : findAll(c))
             {
                 Mueble mue = (Mueble) v;
                 if (Long.parseLong(id.toString())== mue.getReferencia())
                 {
-                    return mue;
-                }
-            }
-        } 
-        else if (c.equals(Usuario.class))
-        {
-            for (Object v : findAll(c))
-            {
-                Usuario mue = (Usuario) v;
-                if (mue.getLogin().equals(id))
-                {
-                    return mue;
+                    resp = mue;
                 }
             }
         }
-        return null;
+        return resp;
+        
     }
 }

@@ -26,6 +26,7 @@ import java.util.List;
  * Implementación de los servicios de registro de un cliente en el sistema
  * @author Juan Sebastián Urrego
  */
+
 public class ServicioRegistroMock implements IServicioRegistroMockRemote, IServicioRegistroMockLocal
 {
     //-----------------------------------------------------------

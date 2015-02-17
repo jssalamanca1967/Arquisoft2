@@ -12,6 +12,7 @@
 
 package co.edu.uniandes.csw.hospitalKennedy.logica.interfaces;
 
+import co.edu.uniandes.csw.hospitalKennedy.dto.Reporte;
 import co.edu.uniandes.csw.hospitalKennedy.excepciones.OperacionInvalidaException;
 
 import javax.ejb.Local;
@@ -48,6 +49,12 @@ public interface IServicioPersistenciaMockLocal
      * @return list Listado de todos los objetos de una clase.
      */
     public java.util.List findAll(java.lang.Class c);
+    
+    public java.util.List findReportes(Long idPaciente) throws Exception;
+    public void updateReporte(Long idPaciente, Reporte reporte) throws Exception;
+    public void deleteReporte(Long idPaciente, Reporte reporte) throws Exception;
+    public void createReporte(Long idPaciente, Reporte reporte) throws Exception;    
+
 
     /**
      * Retorna la instancia de una entidad dado un identificador y la clase de la entidad.

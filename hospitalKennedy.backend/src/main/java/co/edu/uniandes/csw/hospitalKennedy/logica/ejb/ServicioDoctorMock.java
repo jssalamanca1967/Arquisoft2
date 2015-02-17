@@ -6,12 +6,15 @@
 package co.edu.uniandes.csw.hospitalKennedy.logica.ejb;
 
 import co.edu.uniandes.csw.hospitalKennedy.dto.Paciente;
+import co.edu.uniandes.csw.hospitalKennedy.excepciones.OperacionInvalidaException;
 import co.edu.uniandes.csw.hospitalKennedy.logica.interfaces.IServicioDoctorMock;
 import javax.ejb.Stateless;
 
 import co.edu.uniandes.csw.hospitalKennedy.logica.interfaces.IServicioPersistenciaMockLocal;
 import co.edu.uniandes.csw.hospitalKennedy.persistencia.mock.ServicioPersistenciaMock;
 import java.util.ArrayList;
+import javax.ejb.EJB;
+import javax.ejb.Stateful;
 
 
 /**
@@ -22,12 +25,13 @@ import java.util.ArrayList;
 @Stateless
 public class ServicioDoctorMock implements IServicioDoctorMock {
     
+    @EJB
     private IServicioPersistenciaMockLocal persistencia;
+    
     private ArrayList<Paciente> pacientes;
 
     public ServicioDoctorMock()
     {
-        pacientes = new ArrayList<Paciente>();
         persistencia=new ServicioPersistenciaMock();
     }
 
@@ -55,7 +59,7 @@ public class ServicioDoctorMock implements IServicioDoctorMock {
      * @param mueble Mueble que se agrega al carrito
      */
     @Override
-    public void agregarPaciente(Paciente paciente)
+    public void agregarPaciente(Paciente paciente) 
     {
         boolean found = false;
         Paciente item;
@@ -71,7 +75,7 @@ public class ServicioDoctorMock implements IServicioDoctorMock {
 
         if (!found)
         {
-            pacientes.add(paciente);
+            pacientes.add(paciente);           
         }
 
     }
@@ -97,8 +101,8 @@ public class ServicioDoctorMock implements IServicioDoctorMock {
             }
         }
 
-        // Remueve el item si la cantidad es menor o igual a cero
         if (foundItem != null) {
+            
             pacientes.remove(foundItem);
         }
     }

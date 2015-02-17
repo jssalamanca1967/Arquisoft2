@@ -21,9 +21,18 @@ public class Reporte {
     private String localizacionDolor;
     private String patronSuenio;
     private int numeroIdentificacion;
+    private String medicamentosRecientes;
     
-    public Reporte(){
+    public Reporte(Long id, String actividadFisica, String alimentacion, String gravedad, Date fechaCreacion, String localizacionDolor, String patronSuenio, int numeroIdentificacion,String medicamentosRecientes){
         
+    }
+
+    public void setMedicamentosRecientes(String medicamentosRecientes) {
+        this.medicamentosRecientes = medicamentosRecientes;
+    }
+
+    public String getMedicamentosRecientes() {
+        return medicamentosRecientes;
     }
 
     public void setNumeroIdentificacion(int numeroIdentificacion) {

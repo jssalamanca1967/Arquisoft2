@@ -5,93 +5,95 @@
  */
 package co.edu.uniandes.csw.hospitalKennedy.logica.ejb;
 
+import co.edu.uniandes.csw.hospitalKennedy.dto.Paciente;
 import co.edu.uniandes.csw.hospitalKennedy.dto.Reporte;
 import co.edu.uniandes.csw.hospitalKennedy.logica.interfaces.IServicioPacienteMock;
 import co.edu.uniandes.csw.hospitalKennedy.logica.interfaces.IServicioPersistenciaMockLocal;
 import co.edu.uniandes.csw.hospitalKennedy.persistencia.mock.ServicioPersistenciaMock;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.ejb.EJB;
+import javax.ejb.Stateful;
 import javax.ejb.Stateless;
+import javax.inject.Inject;
 
 /**
  *
  * @author estudiante
  */
-@Stateless
+@Stateful
 public class ServicioPacienteMock implements IServicioPacienteMock {
     
+    @EJB
     private IServicioPersistenciaMockLocal persistencia;
-    private ArrayList<Reporte> reportes;
+    
 
     public ServicioPacienteMock()
     {
-        reportes = new ArrayList<Reporte>();
-        persistencia=new ServicioPersistenciaMock();
+        persistencia = new ServicioPersistenciaMock();
+        
     }
 
     @Override
-    public void setPacientes(ArrayList<Reporte> reportes) {
-        this.reportes = reportes;
-    }
+    public ArrayList<Reporte> getReportes(Long idPaciente) 
+    {
+        ArrayList<Reporte> rta = new ArrayList<Reporte>();
+        
+        try
+        {
+            rta = (ArrayList<Reporte>) persistencia.findReportes(idPaciente);
+        }
+        catch(Exception ex)
+        {
+            Logger.getLogger(ServicioCatalogoMock.class.getName()).log(Level.SEVERE, null, ex);
 
-
-    @Override
-    public ArrayList<Reporte> getPacientes() {
-        return reportes;
+        }
+        return rta;
     }
     
              
     @Override
-    public void agregarReporte(Reporte reporte){
+    public void agregarReporte(Long idPaciente, Reporte reporte){
     
-        boolean found = false;
-        Reporte item;
-        for(int i= 0, max= reportes.size(); i < max; i++)
+        try
         {
-            item = (Reporte)reportes.get(i);
-            if (item.getNumeroIdentificacion()== reporte.getNumeroIdentificacion())
-            {
-                found = true;
-                break;
-            }
+            persistencia.createReporte(idPaciente, reporte);
         }
-
-        if (!found)
+        catch(Exception ex)
         {
-            reportes.add(reporte);
+            Logger.getLogger(ServicioCatalogoMock.class.getName()).log(Level.SEVERE, null, ex);
+            
         }
+        
 
     }
     
-    /**
-     * Remueve un mueble del carrito de compra
-     * @param mueble Mueble a remover
-     * @param removerCero Indica si al ser cero se elimina de la lista
-     */
     @Override
-    public void removerReporte(Reporte reporte)
+    public void removerReporte(Long idPaciente, Reporte reporte)
     {
 
-        Reporte foundItem = null;
-        Reporte item;
-        for(int i= 0, max= reportes.size(); i < max; i++)
+        try
         {
-            item = (Reporte)reportes.get(i);
-            if (item.getNumeroIdentificacion()== reporte.getNumeroIdentificacion())
-            {
-                foundItem = item;
-                break;
-            }
+            persistencia.deleteReporte(idPaciente, reporte);
         }
-
-        // Remueve el item si la cantidad es menor o igual a cero
-        if (foundItem != null) {
-            reportes.remove(foundItem);
+        catch(Exception ex)
+        {
+            Logger.getLogger(ServicioCatalogoMock.class.getName()).log(Level.SEVERE, null, ex);
+            
         }
+        
     }
 
+    
     @Override
-    public ArrayList<Reporte> getReportes() {
-       return reportes;
-    }
+    public List<Paciente> darPacientes(){
+        
+        System.out.println("Eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeehhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh");
+        return persistencia.findAll(Paciente.class);
+
+    }  
+
     
 }

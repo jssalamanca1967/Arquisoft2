@@ -19,6 +19,13 @@ public class Doctor {
     private String nombre;
     private String password;
     private String login;
+    
+    public Doctor(Long id, String pNombre, String pPsw, String pLogin){
+        this.id = id;
+        nombre = pNombre;
+        password = pPsw;
+        login = pLogin;
+    }
 
     public void setId(Long id) {
         this.id = id;
