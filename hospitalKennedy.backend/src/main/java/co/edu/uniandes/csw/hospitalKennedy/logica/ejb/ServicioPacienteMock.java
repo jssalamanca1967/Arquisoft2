@@ -95,5 +95,21 @@ public class ServicioPacienteMock implements IServicioPacienteMock {
 
     }  
 
+    @Override
+    public Reporte getReportePorPaciente(Long idPaciente, Long idReporte) {
+    
+        ArrayList<Reporte> reportes = getReportes(idPaciente);
+        
+        for(int i =0;i<reportes.size();i++)
+        {
+            if( reportes.get(i).getId() == idReporte)
+            {
+                return reportes.get(i);
+            }
+
+        }
+        return null;
+    }
+
     
 }

@@ -21,5 +21,6 @@ public interface IServicioPacienteMock {
     public void agregarReporte(Long idPaciente, Reporte reporte);
     public void removerReporte(Long idPaciente, Reporte reporte);
     public List<Paciente> darPacientes();
+    public Reporte getReportePorPaciente(Long idPaciente,Long idReporte);
     
 }
