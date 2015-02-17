@@ -22,7 +22,7 @@ import javax.ejb.Stateful;
  * @author estudiante
  */
 
-@Stateless
+@Stateful
 public class ServicioDoctorMock implements IServicioDoctorMock {
     
     @EJB
