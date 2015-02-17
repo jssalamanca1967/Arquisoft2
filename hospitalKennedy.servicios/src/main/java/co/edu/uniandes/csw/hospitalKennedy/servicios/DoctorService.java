@@ -37,6 +37,7 @@ public class DoctorService {
     @POST
     @Path("agregar/")
     public List<Paciente> agregarPacientes(List<Paciente> lista){
+        System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaahhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh");
         for(Paciente paciente: lista){
             doctorEjb.agregarPaciente(paciente);
         }
