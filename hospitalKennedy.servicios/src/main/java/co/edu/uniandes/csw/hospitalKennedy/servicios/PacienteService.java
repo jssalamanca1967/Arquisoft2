@@ -81,6 +81,14 @@ public class PacienteService {
     public List<Reporte> darReportes(@PathParam("id") Long id){
         return pacienteEjb.getReportes(id);
     }
+    
+    @GET
+    @Path("{id}/reportes/{idReporte}")
+    public Reporte darReportePorPaciente(@PathParam("id") Long id, @PathParam("idReporte")Long idReporte)
+    {
+        return pacienteEjb.getReportePorPaciente(id, idReporte);
+    }
+    
            
     
     @GET
